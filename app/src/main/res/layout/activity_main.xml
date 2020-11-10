@@ -11,6 +11,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/restaurant" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +21,19 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="@color/colorTextIcons"
+        android:id="@+id/MyRestaurants"
         android:text="MyRestaurants"/>
+
+    <EditText
+        android:id="@+id/locationEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/findRestaurantsButton"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorTextIcons"
+        android:hint="Enter Zip Code"
+        android:padding="5dp" />
 
     <Button
         android:id="@+id/findRestaurantsButton"
