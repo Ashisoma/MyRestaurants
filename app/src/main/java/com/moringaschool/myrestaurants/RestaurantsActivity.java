@@ -43,7 +43,7 @@ public class RestaurantsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 String restaurant = ((TextView)view).getText().toString();
-                Log.v(TAG, "In the onItemClickListener!");
+               // Log.v(TAG, "In the onItemClickListener!");
                 Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
 
             }
@@ -52,7 +52,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the restaurants near: " + location);
-        Log.d(TAG, "In the onCreate method");
+       // Log.d(TAG, "In the onCreate method");
 
     }
 }
