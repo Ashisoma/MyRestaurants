@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFindRestaurantsButton.setOnClickListener(this);
 
     }
-            @Override
-            public void onClick(View v){
+    @Override
+    public void onClick(View v){
                 if (v == mFindRestaurantsButton){
                 Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
                 String location = mLocationEditText.getText().toString();
