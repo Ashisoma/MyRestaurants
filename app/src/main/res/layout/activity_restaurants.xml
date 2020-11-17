@@ -3,17 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.moringaschool.myrestaurants.RestaurantsActivity">
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ui.RestaurantsActivity">
 
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/locationTextView"
+        android:id="@+id/recyclerView"
         android:layout_alignParentEnd="true"
+        android:layout_below="@+id/locationTextView"
         android:layout_marginTop="16dp"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
