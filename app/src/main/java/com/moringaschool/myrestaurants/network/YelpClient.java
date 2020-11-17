@@ -1,4 +1,4 @@
-package com.moringaschool.myrestaurants;
+package com.moringaschool.myrestaurants.network;
 
 import java.io.IOException;
 
@@ -19,9 +19,9 @@ public class YelpClient {
 
     public static YelpApi getClient(){
 
-        if (retrofit = null){
-            OkHttpClient okHttpClient = new OkHttpClient().Builder()
-                    .addIntercepter(new Interceptor(){
+        if (retrofit == null){
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new Interceptor(){
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request newRequest = chain.request().newBuilder()
@@ -35,6 +35,6 @@ public class YelpClient {
                     .addConverterFactory(GsonConverterFactory.create()).build();
 
         }
-        return retrofit.create(YelpApi.class)
+        return retrofit.create(YelpApi.class);
     }
 }
