@@ -53,11 +53,11 @@ public class RestaurantsDetailsFragment extends Fragment {
         mRestaurant = Parcels.unwrap(getArguments().getParcelable("restaurant"));
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurants_details, container, false);
         ButterKnife.bind(this, view);
+
         Picasso.get().load(mRestaurant.getImageUrl()).into(mImageLabel);
         mNameLabel.setText(mRestaurant.getName());
         mCategoriesLabel.setText(mRestaurant.getCategories().get(0).getTitle());
