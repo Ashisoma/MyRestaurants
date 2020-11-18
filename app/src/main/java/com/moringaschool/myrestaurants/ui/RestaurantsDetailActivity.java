@@ -29,6 +29,8 @@ public class RestaurantsDetailActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        
+
         mRestaurants = Parcels.unwrap(getIntent().getParcelableExtra("restaurants"));
         int startingPosition = getIntent().getIntExtra("position", 0);
 

@@ -1,5 +1,7 @@
 package com.moringaschool.myrestaurants.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -58,6 +60,7 @@ public class RestaurantsDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurants_details, container, false);
         ButterKnife.bind(this, view);
 
+
         Picasso.get().load(mRestaurant.getImageUrl()).into(mImageLabel);
         mNameLabel.setText(mRestaurant.getName());
         mCategoriesLabel.setText(mRestaurant.getCategories().get(0).getTitle());
@@ -67,7 +70,32 @@ public class RestaurantsDetailsFragment extends Fragment {
         mPhoneLabel.setText(mRestaurant.getPhone());
         mAddressLabel.setText(mRestaurant.getLocation().toString());
 
+        mWebsiteLabel.setOnClickListener(this);
+        mPhoneLabel.setOnClickListener(this);
+        mAddressLabel.setOnClickListener(this);
+
         return view;
+    }
+    public void onClick(View v) {
+        if (v == mWebsiteLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mRestaurant.getUrl()));
+            startActivity(webIntent);
+        }
+        if (v == mPhoneLabel){
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
+                    Uri.parse("tel:" + mRestaurant.getPhone()));
+            startActivity(phoneIntent);
+        }if (v == mAddressLabel){
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("geo:" + mRestaurant.getCoordinates().getLatitude()
+                            + "," + mRestaurant.getCoordinates().getLongitude()
+                            + "?q=(" + mRestaurant.getName() + ")"));
+            startActivity(mapIntent);
+        }
+    }
+
+
     }
 
 }
