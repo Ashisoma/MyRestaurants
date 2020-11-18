@@ -26,36 +26,47 @@ import butterknife.ButterKnife;
  * Use the {@link RestaurantsDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RestaurantsDetailsFragment extends Fragment {
+public class RestaurantsDetailsFragment extends Fragment implements View.OnClickListener{
 
-    @BindView(R.id.restaurantImageView) ImageView mImageLabel;
-    @BindView(R.id.restaurantNameTextView) TextView mNameLabel;
-    @BindView(R.id.cuisineTextView) TextView mCategoriesLabel;
-    @BindView(R.id.ratingTextView) TextView mRatingLabel;
-    @BindView(R.id.websiteTextView) TextView mWebsiteLabel;
-    @BindView(R.id.phoneTextView) TextView mPhoneLabel;
-    @BindView(R.id.addressTextView) TextView mAddressLabel;
-    @BindView(R.id.saveRestaurantButton) TextView mSaveRestaurantButton;
+    @BindView(R.id.restaurantImageView)
+    ImageView mImageLabel;
+    @BindView(R.id.restaurantNameTextView)
+    TextView mNameLabel;
+    @BindView(R.id.cuisineTextView)
+    TextView mCategoriesLabel;
+    @BindView(R.id.ratingTextView)
+    TextView mRatingLabel;
+    @BindView(R.id.websiteTextView)
+    TextView mWebsiteLabel;
+    @BindView(R.id.phoneTextView)
+    TextView mPhoneLabel;
+    @BindView(R.id.addressTextView)
+    TextView mAddressLabel;
+    @BindView(R.id.saveRestaurantButton)
+    TextView mSaveRestaurantButton;
 
     private Business mRestaurant;
 
     public RestaurantsDetailsFragment() {
         // Required empty public constructor
     }
-    public static RestaurantsDetailsFragment newInstance(Business restaurant){
+
+    public static RestaurantsDetailsFragment newInstance(Business restaurant) {
         RestaurantsDetailsFragment restaurantDetailFragment = new RestaurantsDetailsFragment();
         Bundle args = new Bundle();
         args.putParcelable("restaurant", Parcels.wrap(restaurant));
         restaurantDetailFragment.setArguments(args);
         return restaurantDetailFragment;
     }
+
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRestaurant = Parcels.unwrap(getArguments().getParcelable("restaurant"));
     }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurants_details, container, false);
         ButterKnife.bind(this, view);
@@ -76,17 +87,19 @@ public class RestaurantsDetailsFragment extends Fragment {
 
         return view;
     }
+
     public void onClick(View v) {
         if (v == mWebsiteLabel) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(mRestaurant.getUrl()));
             startActivity(webIntent);
         }
-        if (v == mPhoneLabel){
+        if (v == mPhoneLabel) {
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
                     Uri.parse("tel:" + mRestaurant.getPhone()));
             startActivity(phoneIntent);
-        }if (v == mAddressLabel){
+        }
+        if (v == mAddressLabel) {
             Intent mapIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("geo:" + mRestaurant.getCoordinates().getLatitude()
                             + "," + mRestaurant.getCoordinates().getLongitude()
@@ -95,7 +108,5 @@ public class RestaurantsDetailsFragment extends Fragment {
         }
     }
 
-
-    }
 
 }
