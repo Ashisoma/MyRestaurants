@@ -1,4 +1,3 @@
-
 package com.moringaschool.myrestaurants.models;
 
 import com.google.gson.annotations.Expose;

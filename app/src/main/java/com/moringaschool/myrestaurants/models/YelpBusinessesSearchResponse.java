@@ -1,4 +1,3 @@
-
 package com.moringaschool.myrestaurants.models;
 
 import java.util.List;
@@ -9,7 +8,7 @@ public class YelpBusinessesSearchResponse {
 
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Long total;
     @SerializedName("businesses")
     @Expose
     private List<Business> businesses = null;
@@ -30,18 +29,18 @@ public class YelpBusinessesSearchResponse {
      * @param region
      * @param businesses
      */
-    public YelpBusinessesSearchResponse(Integer total, List<Business> businesses, Region region) {
+    public YelpBusinessesSearchResponse(Long total, List<Business> businesses, Region region) {
         super();
         this.total = total;
         this.businesses = businesses;
         this.region = region;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 

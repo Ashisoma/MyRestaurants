@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.myrestaurants.R;
 import com.moringaschool.myrestaurants.models.Business;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -49,12 +50,12 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         @BindView(R.id.restaurantNameTextView) TextView mNameTextView;
         @BindView(R.id.categoryTextView) TextView mCategoryTextView;
         @BindView(R.id.ratingTextView) TextView mRatingTextView;
-        private Context mContext;
+        private Context context;
 
         public RestaurantViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mContext = itemView.getContext();
+            context = itemView.getContext();
         }
 
         public void bindRestaurant(Business restaurant) {

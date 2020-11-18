@@ -1,18 +1,14 @@
-
 package com.moringaschool.myrestaurants.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.moringaschool.myrestaurants.models.Category;
-import com.moringaschool.myrestaurants.models.Coordinates;
-import com.moringaschool.myrestaurants.models.Location;
 
 public class Business {
 
     @SerializedName("rating")
     @Expose
-    private Integer rating;
+    private Long rating;
     @SerializedName("price")
     @Expose
     private String price;
@@ -33,7 +29,7 @@ public class Business {
     private List<Category> categories = null;
     @SerializedName("review_count")
     @Expose
-    private Integer reviewCount;
+    private Long reviewCount;
     @SerializedName("name")
     @Expose
     private String name;
@@ -81,7 +77,7 @@ public class Business {
      * @param id
      * @param categories
      */
-    public Business(Integer rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
+    public Business(Long rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Long reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
         super();
         this.rating = rating;
         this.price = price;
@@ -100,11 +96,11 @@ public class Business {
         this.transactions = transactions;
     }
 
-    public Integer getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
     }
 
@@ -156,11 +152,11 @@ public class Business {
         this.categories = categories;
     }
 
-    public Integer getReviewCount() {
+    public Long getReviewCount() {
         return reviewCount;
     }
 
-    public void setReviewCount(Integer reviewCount) {
+    public void setReviewCount(Long reviewCount) {
         this.reviewCount = reviewCount;
     }
 
