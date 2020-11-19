@@ -108,5 +108,4 @@ public class RestaurantsDetailsFragment extends Fragment implements View.OnClick
         }
     }
 
-
 }

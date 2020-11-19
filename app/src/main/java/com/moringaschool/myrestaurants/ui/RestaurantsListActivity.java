@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -71,6 +72,8 @@ public class RestaurantsListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<YelpBusinessesSearchResponse> call, Throwable t) {
                 hideProgressBar();
+                Log.e(TAG, "In the onFailure method ", t);
+                Log.e(TAG,"in thowable", t);
                 showFailureMessage();
             }
 

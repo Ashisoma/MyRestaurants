@@ -11,7 +11,7 @@ public class Business {
 
     @SerializedName("rating")
     @Expose
-    private Long rating;
+    private Double rating;
     @SerializedName("price")
     @Expose
     private String price;
@@ -32,7 +32,7 @@ public class Business {
     private List<Category> categories = null;
     @SerializedName("review_count")
     @Expose
-    private Long reviewCount;
+    private Integer reviewCount;
     @SerializedName("name")
     @Expose
     private String name;
@@ -80,7 +80,7 @@ public class Business {
      * @param id
      * @param categories
      */
-    public Business(Long rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Long reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
+    public Business(Double rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
         super();
         this.rating = rating;
         this.price = price;
@@ -99,11 +99,11 @@ public class Business {
         this.transactions = transactions;
     }
 
-    public Long getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Long rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -155,11 +155,11 @@ public class Business {
         this.categories = categories;
     }
 
-    public Long getReviewCount() {
+    public Integer getReviewCount() {
         return reviewCount;
     }
 
-    public void setReviewCount(Long reviewCount) {
+    public void setReviewCount(Integer reviewCount) {
         this.reviewCount = reviewCount;
     }
 
