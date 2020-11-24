@@ -2,19 +2,27 @@ package com.moringaschool.myrestaurants.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.moringaschool.myrestaurants.Constants;
 import com.moringaschool.myrestaurants.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
+
     public static String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @BindView(R.id.locationEditText) EditText mLocationEditText;
@@ -27,17 +35,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
         mFindRestaurantsButton.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v){
                 if (v == mFindRestaurantsButton){
-                Intent intent = new Intent(MainActivity.this, RestaurantsListActivity.class);
-                String location = mLocationEditText.getText().toString();
-                intent.putExtra("location", location);
-                startActivity(intent);
+                    String location = mLocationEditText.getText().toString();
+                    addToSharedPreferences(location);
+                    Intent intent = new Intent(MainActivity.this, RestaurantsListActivity.class);
+                    startActivity(intent);
             }
+    }
 
+    private void addToSharedPreferences(String location){
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
 }
