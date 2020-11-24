@@ -1,5 +1,6 @@
 package com.moringaschool.myrestaurants.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,13 +9,17 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.moringaschool.myrestaurants.Constants;
 import com.moringaschool.myrestaurants.R;
 
@@ -37,7 +42,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        mSearchedLocationReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
+        mSearchedLocationReference = FirebaseDatabase.getInstance()
+                .getReference().child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);// pinpoint the location name
+
+        mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot locationSnapshot : snapshot.getChildren()){
+                    String location = locationSnapshot.getValue().toString();
+                    Log.d("Locations updated","location" + location); //logging
+                }
+            }
+
+            @Override
+            public void onCancelled( DatabaseError error) {
+
+            }
+        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -64,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void saveLocationToFirebase(String location){
-        mSearchedLocationReference.setValue(location);
+        mSearchedLocationReference.push().setValue(location);
     }
 
 //    private void addToSharedPreferences(String location){

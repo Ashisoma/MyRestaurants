@@ -25,6 +25,7 @@ import com.moringaschool.myrestaurants.network.YelpClient;
 import com.moringaschool.myrestaurants.models.Business;
 import com.moringaschool.myrestaurants.models.YelpBusinessesSearchResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,7 +44,8 @@ public class RestaurantsListActivity extends AppCompatActivity {
 
     private RestaurantListAdapter mAdapter;
 
-    public List<Business> restaurants;
+    public List<Business> restaurants = new ArrayList<>();
+    public ArrayList<Business> mRestaurants;
 
 //    private String mRecentAddress;
 //    private SharedPreferences mSharedPreferences;
