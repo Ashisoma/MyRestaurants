@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.myrestaurants.Constants;
 import com.moringaschool.myrestaurants.R;
 import com.moringaschool.myrestaurants.adapters.RestaurantListAdapter;
@@ -36,13 +39,16 @@ public class RestaurantsListActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
+//    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
 
     private RestaurantListAdapter mAdapter;
 
     public List<Business> restaurants;
 
-    private String mRecentAddress;
-    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//
+    private DatabaseReference mSearchedLocationReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class RestaurantsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
+//        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf ");
+//        mAppNameTextView.setTypeFace(ostrichFont);
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
