@@ -37,15 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
 
     private DatabaseReference mSearchedLocationReference;
+    private ValueEventListener mSearchedLocationReferenceListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        mSearchedLocationReference = FirebaseDatabase.getInstance()
-                .getReference().child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);// pinpoint the location name
+        mSearchedLocationReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);// pinpoint the location name
 
-        mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
+       mSearchedLocationReferenceListener =  mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot locationSnapshot : snapshot.getChildren()){
@@ -91,4 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private void addToSharedPreferences(String location){
 //        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
 //    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
+    }
 }

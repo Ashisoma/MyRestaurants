@@ -1,5 +1,6 @@
 package com.moringaschool.myrestaurants.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -29,7 +30,7 @@ public class Business {
     private Boolean isClosed;
     @SerializedName("categories")
     @Expose
-    private List<Category> categories = null;
+    private List<Category> categories = new ArrayList<>();
     @SerializedName("review_count")
     @Expose
     private Integer reviewCount;
@@ -53,7 +54,7 @@ public class Business {
     private Double distance;
     @SerializedName("transactions")
     @Expose
-    private List<String> transactions = null;
+    private List<String> transactions = new ArrayList<>();
 
     /**
      * No args constructor for use in serialization
