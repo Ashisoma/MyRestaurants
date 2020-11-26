@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
-    @BindView(R.id.locationEditText) EditText mLocationEditText;
+//    @BindView(R.id.locationEditText) EditText mLocationEditText;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
+    @BindView(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
 
     private DatabaseReference mSearchedLocationReference;
     private ValueEventListener mSearchedLocationReferenceListener;
@@ -71,17 +72,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //        mEditor = mSharedPreferences.edit();
 
         mFindRestaurantsButton.setOnClickListener(this);
+        mSavedRestaurantsButton.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v){
                 if (v == mFindRestaurantsButton){
-                    String location = mLocationEditText.getText().toString();
-                    saveLocationToFirebase(location);
                     Intent intent = new Intent(MainActivity.this, RestaurantsListActivity.class);
-                    intent.putExtra("location", location);
                     startActivity(intent);
             }
+        if (v == mSavedRestaurantsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedRestaurantListActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void saveLocationToFirebase(String location){

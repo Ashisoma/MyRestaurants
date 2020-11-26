@@ -56,6 +56,8 @@ public class Business {
     @Expose
     private List<String> transactions = new ArrayList<>();
 
+    List<String> address = new ArrayList<>();
+
     /**
      * No args constructor for use in serialization
      * 
@@ -219,5 +221,6 @@ public class Business {
     public void setTransactions(List<String> transactions) {
         this.transactions = transactions;
     }
+
 
 }

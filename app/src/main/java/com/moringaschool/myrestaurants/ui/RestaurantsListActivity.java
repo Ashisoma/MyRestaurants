@@ -1,6 +1,7 @@
 package com.moringaschool.myrestaurants.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,8 +12,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -47,9 +52,10 @@ public class RestaurantsListActivity extends AppCompatActivity {
     public List<Business> restaurants = new ArrayList<>();
     public ArrayList<Business> mRestaurants;
 
-//    private String mRecentAddress;
-//    private SharedPreferences mSharedPreferences;
-//
+    private String mRecentAddress;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     private DatabaseReference mSearchedLocationReference;
 
     @Override
@@ -63,6 +69,7 @@ public class RestaurantsListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
+
 
         YelpApi client = YelpClient.getClient();
 
@@ -100,10 +107,9 @@ public class RestaurantsListActivity extends AppCompatActivity {
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 //        Log.d("Shared Pref Location", mRecentAddress);
-//        if (mRecentAddress != null){
-//            client.getRestaurants(mRecentAddress)
-//        }
+//
     }
+
 
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
@@ -122,4 +128,10 @@ public class RestaurantsListActivity extends AppCompatActivity {
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public  boolean onOptionsItemSelected(MenuItem item){
+        return super.onOptionsItemSelected(item);
+    }
+
 }
