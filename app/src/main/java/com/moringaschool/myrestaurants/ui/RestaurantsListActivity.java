@@ -39,7 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RestaurantsListActivity extends AppCompatActivity {
+public class   RestaurantsListActivity extends AppCompatActivity {
     private static final String TAG = RestaurantsListActivity.class.getSimpleName();
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
