@@ -58,6 +58,8 @@ public class Business {
 
     List<String> address = new ArrayList<>();
 
+    private String pushId;
+
     /**
      * No args constructor for use in serialization
      * 
@@ -220,6 +222,15 @@ public class Business {
 
     public void setTransactions(List<String> transactions) {
         this.transactions = transactions;
+    }
+
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 
